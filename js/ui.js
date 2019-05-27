@@ -12,9 +12,16 @@ class UI {
     this.result = document.querySelector("#result");
   }
 
+  showVenue(venue, target) {
+    let venueTemplate = `<strong>Venue: </strong>${
+      venue.name
+    }<br/><strong>Address: </strong>${venue.address.localized_address_display}`;
+    target.parentElement.innerHTML = venueTemplate;
+    console.log(target.id);
+  }
   // Display events from the API
 
-  async displayEvents(events) {
+  displayEvents(events) {
     // Build the template
     let HTMLTemplate = "";
 
@@ -38,14 +45,13 @@ class UI {
                     typeof eventInfo.description.text === "string"
                       ? eventInfo.description.text.substring(0, 200)
                       : ""
-                  }...</p>
-                  <p><strong>Venue: </strong> ${
-                    eventInfo.venueDetails.name
-                  }<br/>${
-        eventInfo.venueDetails.address.localized_address_display
-          ? eventInfo.venueDetails.address.localized_address_display
-          : ""
-      }</p>
+                  }... </p>
+                  <p class="lead text-info"><a class="show-more" id="${
+                    eventInfo.venue_id
+                  }">View Location </a><span id="text-loader-${
+        eventInfo.venue_id
+      }" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span> </p>
+                  
                   <span class="badge badge-primary">Capacity: ${
                     eventInfo.capacity === null
                       ? "unavailable"

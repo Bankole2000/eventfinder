@@ -54,3 +54,18 @@ document.querySelector("#submitBtn").addEventListener("click", e => {
   // console.log(`event: ${eventName} of category: ${category }`);
 });
 // console.log(eventbrite);
+
+// Show Venue Button click
+document.body.addEventListener("click", e => {
+  e.preventDefault();
+  if (e.target.className === "show-more") {
+    document.querySelector(`span#text-loader-${e.target.id}`).style.display =
+      "inline-block";
+    // console.log(e.target.id);
+
+    eventbrite.getVenue(e.target.id).then(venue => {
+      ui.showVenue(venue, e.target);
+    });
+  } else {
+  }
+});
