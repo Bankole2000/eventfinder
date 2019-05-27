@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Event Finder &#8226; Find Events in your City</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
+      <a class="navbar-brand" href="#">Banky's Event Finder</a>
+    </nav>
+    <div class="container search-wrapper">
+      <div id="search-events" class="card card-body">
+        <h1 class="text-center">Search for Events by Name or City</h1>
+
+        <div class="form-group">
+          <label for="event-name">Search by Name or City</label>
+          <input
+            type="text"
+            id="event-name"
+            class="form-control"
+            placeholder="Search By Name or City"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select class="form-control" id="category"></select>
+        </div>
+
+        <div class="form-group">
+          <input
+            type="submit"
+            class="mt-5 form-control btn btn-success"
+            id="submitBtn"
+            value="Search"
+          />
+        </div>
+        <div
+          class="alert alert-info mt-4 text-center"
+          id="loading"
+          style="display:none;"
+        >
+          Searching <i class="fas fa-spinner fa-spin"></i>
+        </div>
+      </div>
+      <div id="result" class="row mt-5"></div>
+    </div>
+
+    <footer class="mt-5 p-3 text-center bg-primary">
+      Search Events in Your City &copy; <span id="year"></span> Esan Bankole
+    </footer>
+
+    <script src="js/eventbrite.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+      const today = new Date();
+      const year = document.querySelector("#year");
+      year.innerHTML = today.getFullYear();
+    </script>
+    <style>
+      footer {
+        color: white;
+      }
+    </style>
+  </body>
+</html>
