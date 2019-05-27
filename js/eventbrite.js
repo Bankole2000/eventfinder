@@ -15,6 +15,28 @@ class EventBrite {
 
     // wait for response and return as json
     const events = await eventsResponse.json();
+
+    for (const event of events.events) {
+      const venueResponse = await fetch(
+        `https://www.eventbriteapi.com/v3/venues/${event.venue_id}/?token=${
+          this.auth_token
+        }`
+      );
+      event.venueDetails = await venueResponse.json();
+      console.log(event);
+    }
+
+    // events.events.forEach(event => {
+    //   fetch(
+    //     `https://www.eventbriteapi.com/v3/venues/${event.venue_id}/?token=${
+    //       this.auth_token
+    //     }`
+    //   ).then(response => {
+    //     console.log(response.json());
+    //   });
+    // });
+    // console.log(events.venuedetails);
+
     return events;
   }
 

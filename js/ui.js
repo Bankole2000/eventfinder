@@ -14,7 +14,7 @@ class UI {
 
   // Display events from the API
 
-  displayEvents(events) {
+  async displayEvents(events) {
     // Build the template
     let HTMLTemplate = "";
 
@@ -39,6 +39,13 @@ class UI {
                       ? eventInfo.description.text.substring(0, 200)
                       : ""
                   }...</p>
+                  <p><strong>Venue: </strong> ${
+                    eventInfo.venueDetails.name
+                  }<br/>${
+        eventInfo.venueDetails.address.localized_address_display
+          ? eventInfo.venueDetails.address.localized_address_display
+          : ""
+      }</p>
                   <span class="badge badge-primary">Capacity: ${
                     eventInfo.capacity === null
                       ? "unavailable"
