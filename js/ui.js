@@ -40,11 +40,18 @@ class UI {
                       : ""
                   }...</p>
                   <span class="badge badge-primary">Capacity: ${
-                    eventInfo.capacity
+                    eventInfo.capacity === null
+                      ? "unavailable"
+                      : eventInfo.capacity
                   }</span>
                   <span class="badge badge-secondary">Date & Time: ${
                     eventInfo.start.local
                   }</span>
+                  ${
+                    eventInfo.is_free === true
+                      ? "<span class='badge badge-success'>Free</span>"
+                      : "<span class='badge badge-danger'>Paid</span>"
+                  }
                   <a href="${
                     eventInfo.url
                   }" target="_blank" class="btn btn-primary btn-block mt-4">Get Tickets</a>
