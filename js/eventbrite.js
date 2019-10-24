@@ -1,15 +1,25 @@
 class EventBrite {
   // Constructor when instantiated
   constructor() {
-    this.auth_token = "37WEWG7Z24VJFPREEWJA";
+    this.auth_token = "";
+    // this.auth_token = "37WEWG7Z24VJFPREEWJA";
+    this.apikey = "JOMPXQNXHCSKGUBXS5";
+    this.secret = "BHVEINZS54T7476VOJ7QQYMYFXEQSFVU4QYFRL43XPL2LZ7QMU";
+    this.privatetoken = "63VUN7LEHNQVZAVULLXP";
+    this.publictoken = "CHRI7RR3ZOMAGUXCMDVG";
     this.orderby = "date";
+    // this.proxyurl = "";
+    this.proxyurl = "https://cors-anywhere.herokuapp.com/";
   }
 
   async getVenue(venueId) {
     const venueResponse = await fetch(
-      `https://www.eventbriteapi.com/v3/venues/${venueId}/?token=${
-        this.auth_token
-      }`
+      `${this.proxyurl}https://www.eventbriteapi.com/v3/venues/${venueId}/`, 
+      {
+        headers : {
+          'Authorization' : 'Bearer 63VUN7LEHNQVZAVULLXP'
+        }
+      }
     );
     const venue = await venueResponse.json();
     console.log(venue);
@@ -19,9 +29,14 @@ class EventBrite {
   // Get the Events from API
   async queryAPI(eventName, category) {
     const eventsResponse = await fetch(
-      `https://www.eventbriteapi.com/v3/events/search/?q=${eventName}&sort_by=${
+      `${this.proxyurl}https://www.eventbriteapi.com/v3/events/search/?q=${eventName}&sort_by=${
         this.orderby
-      }&categories=${category}&token=${this.auth_token}`
+      }&categories=${category}`, 
+      {
+        headers : {
+          'Authorization' : 'Bearer 63VUN7LEHNQVZAVULLXP'
+        }
+      }
     );
 
     // wait for response and return as json
@@ -44,7 +59,12 @@ class EventBrite {
   async getCategoriesAPI() {
     // Query the API
     const categoriesResponse = await fetch(
-      `https://www.eventbriteapi.com/v3/categories/?token=${this.auth_token}`
+      `${this.proxyurl}https://www.eventbriteapi.com/v3/categories/`, 
+      {
+        headers : {
+          'Authorization' : 'Bearer 63VUN7LEHNQVZAVULLXP'
+        }
+      }
     );
 
     // Hold for the response and then return as json
